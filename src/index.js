@@ -22,9 +22,14 @@ function soundsMiddleware(soundsData) {
       return next(action);
     }
 
+    let volume = 1.0;
+    if (action.meta.volume) {
+      volume = action.meta.volume;
+    }
+
     const [ soundName, spriteName ] = action.meta.sound.split('.');
 
-    howlerIntegration.play(soundName, spriteName);
+    howlerIntegration.play(soundName, spriteName, volume);
 
     return next(action);
   };
