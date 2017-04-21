@@ -1,7 +1,5 @@
 const Howl = require('howler').Howl;
 
-var VOLUME = -1;
-
 module.exports = {
   initialize(soundsData) {
     let soundOptions;
@@ -22,7 +20,7 @@ module.exports = {
     return this.sounds;
   },
 
-  play(soundName, spriteName, vol = 1.0) {
+  play(soundName, spriteName, volume = 1.0) {
     const sound = this.sounds[soundName];
 
     if ( typeof sound === 'undefined' ) {
@@ -40,11 +38,8 @@ module.exports = {
       `);
     }
 
-    if (vol !== VOLUME) {
-      VOLUME = sound.volume(vol);
-      console.log("Volume set to " + VOLUME);
-    }
-
+    console.log("[SOUND] Playing " + soundName + " at " + volume);
+    sound.volume(volume);
     sound.play(spriteName);
   }
 };

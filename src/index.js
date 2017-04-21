@@ -22,8 +22,17 @@ function soundsMiddleware(soundsData) {
       return next(action);
     }
 
+    // Sample action:
+    // {  "id":2,
+    //    "type":"SOUND_ACTION",
+    //    "meta": {
+    //      "sound":"Navigation_Down",
+    //      "volume":0
+    //    }
+    // }
+
     let volume = 1.0;
-    if (action.meta.volume) {
+    if (volume != action.meta.volume && action.meta.volume >= 0 && action.meta.volume <= 1.0) {
       volume = action.meta.volume;
     }
 
